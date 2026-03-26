@@ -23,12 +23,59 @@
     <link rel="stylesheet" href="style/style.css">
 </head>
 
-<body>
+<body class="bg-[#F8FAFC] max-h-screen">
+
+   <!-- login Page  -->
+<div id="loginPage" class="min-h-screen flex items-center justify-center p-4">
+    <div class="card bg-base-100 shadow-xl w-full max-w-sm">
+        <div class="card-body gap-4">
+
+            <!-- logo & Title -->
+            <div class="logoTitle flex flex-col items-center">
+                <div class="logo w-16 h-16 ">
+                    <img src="assets/github-logo.png" alt="">
+                </div>
+                <h1 class="text-[#1F2937] font-semibold text-xl mt-4">GitHub Issues Tracker</h1>
+                <p class="text-sm text-[#64748B]">Sign in to manage your issues</p>
+            </div>
+
+            <!-- invalid Credentials -->
+            <div id="loginError" class="alert alert-error hidden">
+              <span>Wrong username or password!</span>
+            </div>
+ 
+            <!-- input  -->
+            <div class="username">
+               <label class="mb-1 label font-semibold text-[#1F2937]">Username</label>
+               <input id="usernameInput" class="input input-bordered w-full"
+                  type="text" placeholder="Enter Username" >
+                <p class="text-[#4A00FF] mt-1 text-xs">Default: admin</p>
+            </div>
+  
+            <div class="pass">  
+               <label class="label mb-1 label font-semibold text-[#1F2937]">Password</label>
+               <input id="passwordInput" class="input input-bordered w-full"
+                  type="password" placeholder="Enter Password" >
+                <p class="text-[#4A00FF] mt-1 text-xs">Default: admin123</p>
+            </div>
+
+            <!-- sign out button  -->
+            <div onclick="login()" class="signInBtn btn btn-primary w-full text-[#FFFFFF]">Sign In </div>
+
+            <!-- divider -->
+            <div class="divider text-sm text-gray-400">OR</div>
+
+            <!-- Demo Credentials infos -->
+            <p class="text-[#64748B] text-xs text-center font-semibold"> Demo Credentials:</p>
+            <div class="demoCredentials bg-[#F8FAFC] rounded p-4 text-center text-sm text-gray-500  ">
+                <strong class="text-[#1F2937] font-semibold">Username: </strong><span class="text-[#1F2937]">admin</span> <br>
+                <strong class="text-[#1F2937] font-semibold">Passwoard: </strong><span class="text-[#1F2937]">admin123</span>
+            </div>
+
+        </div>
+    </div>
+</div>
     
-
-
-    
-
     <script src="scripts/app.js"></script>
 </body>
 </html>
