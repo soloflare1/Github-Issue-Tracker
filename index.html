@@ -25,9 +25,40 @@
 
 <body class="bg-[#F8FAFC] max-h-screen">
     
+    <!-- <div id="mainApp" class="hidden"> -->
+    <div id="mainApp" class="">
+        <!-- navbar  -->
+        <div class="navbar bg-base-600 shadow-sm sticky top-0 z-50 px-6">
+            <!-- nav left -> logo & name -->
+            <div class="navbar-start flex items-center gap-2">
+                <div class="logo w-8 h-8 py-2">
+                    <img src="assets/github-logo.png" alt="">
+                </div>
+                <span class="text-[#1F2937] font-semibold text-xl mt-4">GitHub Issues Tracker</span>
+            </div>
 
+            <!-- nav right - search , New Issue, & Sign Out  -->
+            <div class="navbar-end gap-2">
+                <!-- search box -->
+                <div class="relative w-36 sm:w-52">
+                   <i class="fa-brands fa-sistrix absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm "></i>
+                   <input  id="searchInput" 
+                     oninput="handleSearch(this.value)" 
+                     type="text" name=""
+                   class="text-[#64748B] w-full sm:w-52 rounded-md bg-gray-100 border border-gray-200 py-1.5 pl-9 pr-3 text-sm" 
+                   placeholder="Search issues...">
+                </div>
 
-    
+                <!-- issue  -->
+                <button class="btn btn-primary btn-sm text-[#FFFFFF] font-semibold"> + <span class="hidden sm:inline ">New Issue</span> </button>
+                <!-- sign out  -->
+                <!-- <button onclick="signOut()" class="btn btn-ghost btn-sm "> Sign Out </button> -->
+              
+            </div>
+
+        </div>
+    </div>
+  
 
     <script src="scripts/app.js"></script>
 </body>
