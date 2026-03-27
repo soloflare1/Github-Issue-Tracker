@@ -19,3 +19,7 @@ const login = () => {
 document.addEventListener("keydown", (e) => {
     if(e.key === "Enter")   login();
 });
+
+// const signOut = () => {
+//   window.location.href = "login.html"
+// };
