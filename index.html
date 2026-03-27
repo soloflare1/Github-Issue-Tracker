@@ -25,40 +25,82 @@
 
 <body class="bg-[#F8FAFC] max-h-screen">
     
-    <div id="mainApp" class="hidden">
+    <!-- <div id="mainApp" class="hidden"> -->
     <!-- <div id="mainApp" class=""> -->
-        <!-- navbar  -->
-        <div class="navbar bg-base-600 shadow-sm sticky top-0 z-50 px-6">
-            <!-- nav left -> logo & name -->
-            <div class="navbar-start flex items-center gap-2">
-                <div class="logo w-8 h-8 py-2">
-                    <img src="assets/github-logo.png" alt="">
-                </div>
-                <span class="text-[#1F2937] font-semibold text-xl mt-4">GitHub Issues Tracker</span>
+    <!-- navbar  -->
+    <div class="navbar bg-base-600 shadow-sm sticky top-0 z-50 px-6">
+        <!-- nav left -> logo & name -->
+        <div class="navbar-start flex items-center gap-2">
+            <div class="logo w-8 h-8 py-2">
+                <img src="assets/github-logo.png" alt="">
+            </div>
+            <span class="text-[#1F2937] font-semibold text-xl mt-4">GitHub Issues Tracker</span>
+        </div>
+
+        <!-- nav right - search , New Issue, & Sign Out  -->
+        <div class="navbar-end gap-2">
+            <!-- search box -->
+            <div class="relative w-36 sm:w-52">
+                <i class="fa-brands fa-sistrix absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm "></i>
+                <input  id="searchInput" 
+                    oninput="handleSearch(this.value)" 
+                    type="text" name=""
+                class="text-[#64748B] w-full sm:w-52 rounded-md bg-gray-100 border border-gray-200 py-1.5 pl-9 pr-3 text-sm" 
+                placeholder="Search issues...">
             </div>
 
-            <!-- nav right - search , New Issue, & Sign Out  -->
-            <div class="navbar-end gap-2">
-                <!-- search box -->
-                <div class="relative w-36 sm:w-52">
-                   <i class="fa-brands fa-sistrix absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm "></i>
-                   <input  id="searchInput" 
-                     oninput="handleSearch(this.value)" 
-                     type="text" name=""
-                   class="text-[#64748B] w-full sm:w-52 rounded-md bg-gray-100 border border-gray-200 py-1.5 pl-9 pr-3 text-sm" 
-                   placeholder="Search issues...">
-                </div>
+            <!-- issue  -->
+            <button class="btn btn-primary btn-sm text-[#FFFFFF] font-semibold"> + <span class="hidden sm:inline ">New Issue</span> </button>
+            <!-- sign out  -->
+            <!-- <button onclick="signOut()" class="btn btn-ghost btn-sm "> Sign Out </button> -->
+            
+        </div>
 
-                <!-- issue  -->
-                <button class="btn btn-primary btn-sm text-[#FFFFFF] font-semibold"> + <span class="hidden sm:inline ">New Issue</span> </button>
-                <!-- sign out  -->
-                <!-- <button onclick="signOut()" class="btn btn-ghost btn-sm "> Sign Out </button> -->
-              
+    </div>
+    <!-- </div> -->
+  
+    <!-- content -->
+    <div class="max-w-7xl mx-auto px-4 py-6">
+        <div class="flex gap-2 mb-6">
+            <button id="tabAll" onclick="switchTab('all')"  class="btn btn-sm btn-primary">All</button>
+            <button id="tabOpen" onclick="switchTab('open')"  class="btn btn-sm btn-outline">Open</button>
+            <button id="tabClosed" onclick="switchTab('closed')"  class="btn btn-sm btn-outline">Closed</button>
+        </div>
+
+
+        <div class="flex items-center justifi-between mb-5 flex-wrap gap-2">
+
+            <div class="flex items-center gap-3">
+                <div class=" rounded-full bg-[#ECE4FF] w-10 h-10 flex items-center justify-center">
+                    <img class="w-6 h-6" src="assets/Aperture.png" alt="">
+                </div>
+                <div class="">
+                    <p id="issueCount" class="font-semibold text-xl text-[#1F2937]"> Issues</p>
+                    <p class="text-sm text-[#64748B]">Track and manage your project issues</p>
+                </div>
             </div>
+
+            <div class="flex gap-4 text-sm font-semibold text-[#1F2937]">
+                <span class="flex items-center gap-1.5">
+                    <span class="w-2.5 h-2.5 rounded-full bg-[#00A96E] inline-block"></span>
+                    Open
+                </span>
+            
+                <span class="flex items-center gap-1.5">
+                    <span class="w-2.5 h-2.5 rounded-full bg-[#A855F7] inline-block"></span>
+                    Closed
+                </span>
+            </div>
+        </div>
+
+        <!-- issue cards -->
+        <div id="issuesGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <!-- using js -->
 
         </div>
+
     </div>
-  
+
     <!-- modal (popup) -->
     <dialog id="issueModal" class="modal modal-bottom sm:modal-middle">
 
