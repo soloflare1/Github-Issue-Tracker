@@ -16,7 +16,7 @@ const login = () => {
 }
 
 
-document.addEventListener("keydown", (e) => {
+$("passwordInput")?.addEventListener("keydown", (e) => {
     if(e.key === "Enter")   login();
 });
 
