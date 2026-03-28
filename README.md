@@ -17,5 +17,7 @@ A responsive GitHub Issue Tracker web application that allows users to view, sea
 🛠️ **Technologies Used:**
 HTML, Tailwind CSS, DaisyUI, JavaScript (ES6), REST API
 
-🔗 Live Demo: [https://github-issue-trackit.netlify.app/login.html](https://github-issue-trackit.netlify.app/login.html)
-🔗 GitHub Repository: [https://github.com/soloflare1/Github-Issue-Tracker](https://github.com/soloflare1/Github-Issue-Tracker)
+
+🔗 Live Demo: https://github-issue-trackit.netlify.app/login.html  
+🔗 GitHub Repository: https://github.com/soloflare1/Github-Issue-Tracker
+
