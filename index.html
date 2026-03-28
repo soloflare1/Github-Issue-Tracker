@@ -23,17 +23,17 @@
     <link rel="stylesheet" href="style/style.css">
 </head>
 
-<body class="bg-[#F8FAFC] max-h-screen">
+<body class="bg-[#F8FAFC]">
     
     <!-- <div id="mainApp" class="hidden"> -->
     <!-- <div id="mainApp" class=""> -->
     <!-- navbar  -->
-    <header>
+    <header class="mb-4">
         <div class="navbar bg-white shadow-sm  top-0 z-50 px-6">
         <!-- nav left -> logo & name -->
         
         <div class="navbar-start flex items-center gap-2">
-            <div class="logo w-8 h-8 py-2">
+            <div class="logo w-8 h-8">
                 <img src="assets/github-logo.png" alt="">
             </div>
             <span class="text-[#1F2937] font-semibold text-xl ">GitHub Issues Tracker</span>
@@ -43,7 +43,7 @@
         <div class="navbar-end gap-2">
             <!-- search box -->
             <div class="relative w-36 sm:w-52">
-                <i class="fa-brands fa-sistrix absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm "></i>
+                <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm "></i>
                 <input  id="searchInput" 
                     oninput="handleSearch(this.value)" 
                     type="text" name=""
@@ -63,22 +63,24 @@
     <!-- </div> -->
   
     <!-- content -->
-    <section class="max-w-7xl mx-auto px-4 py-6">
-        <div class="flex gap-2 mb-6">
+    <section class="max-w-7xl mx-auto px-4 py-6 mb-4 shadow-sm bg-white rounded" >
+        <div class="flex gap-2">
             <button id="tabAll" onclick="switchTab('all')"  class="btn btn-sm btn-primary">All</button>
             <button id="tabOpen" onclick="switchTab('open')"  class="btn btn-sm btn-outline">Open</button>
             <button id="tabClosed" onclick="switchTab('closed')"  class="btn btn-sm btn-outline">Closed</button>
         </div>
 
-
-        <div class="flex items-center justify-between mb-5 flex-wrap gap-2">
+    </section> 
+    <!--  -->
+    <section class="max-w-7xl mx-auto px-2 py-3 shadow-sm bg-white " >
+        <div class="flex items-center justify-between mb-4 flex-wrap gap-2">
 
             <div class="flex items-center gap-3">
                 <div class=" rounded-full bg-[#ECE4FF] w-10 h-10 flex items-center justify-center">
                     <img class="w-6 h-6" src="assets/Aperture.png" alt="">
                 </div>
                 <div class="">
-                    <p id="issueCount" class="font-semibold text-xl text-[#1F2937]"> Issues</p>
+                    <p id="issueCount" class="font-semibold text-xl text-[#1F2937]">0 Issues</p>
                     <p class="text-sm text-[#64748B]">Track and manage your project issues</p>
                 </div>
             </div>
@@ -95,7 +97,8 @@
                 </span>
             </div>
         </div>
-
+      </section>
+    <section class="max-w-7xl mx-auto px-4 py-6 mb-4 shadow-sm" >
         <!-- issue cards -->
         <div id="issuesGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             <!-- using js -->
@@ -105,7 +108,7 @@
     </section>
 
     <!-- modal (popup) -->
-    <dialog id="issueModal" class="modal modal-bottom sm:modal-middle">
+    <dialog id="issueModal" class="modal modal-bottom sm:modal-middle shadow-sm">
 
         <div class="modal-box max-w-lg">
             <div id="modalBody">
@@ -122,3 +125,6 @@
     <script src="scripts/app.js"></script>
 </body>
 </html>
+
+
+

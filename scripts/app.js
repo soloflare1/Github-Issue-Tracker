@@ -60,9 +60,9 @@ const fetchSingleIssue = (id) => {
 const switchTab = (tab) => {
     activeTab = tab;
     
-    $("tabAll").className = `tab-btn ${tab === "all"  ?  "active-tab" : "inactive-tab" }`;
-    $("tabOpen").className = `tab-btn ${tab === "open"  ?  "active-tab" : "inactive-tab" }`;
-    $("tabClosed").className = `tab-btn ${tab === "closed"  ?  "active-tab" : "inactive-tab" }`;
+    $("tabAll").className = `btn btn-sm ${tab === "all"  ?  "btn-primary" : "btn-outline" }`;
+    $("tabOpen").className = `btn btn-sm ${tab === "open"  ?  "btn-primary" : "btn-outline" }`;
+    $("tabClosed").className = `btn btn-sm ${tab === "closed"  ?  "btn-primary" : "btn-outline" }`;
 
     const searchText = $("searchInput").value.trim();
     if(searchText){
@@ -84,11 +84,13 @@ const filterByTab = (issues) => {
 }
 
 const handleSearch = (q) => {
+  
+  clearTimeout(searchTimer)
   if(!q.trim()){
     showIssues(filterByTab(allIssues));
     return;
   }
-  doSearch(q.trim());
+  searchTimer = setTimeout(() => doSearch(q.trim()),400);
 }
 
 const doSearch = (qu) => {
@@ -106,7 +108,7 @@ const showIssues = (issues) => {
     $("issueCount").textContent = issues.length + " Issues";
     if(!issues.length){
         $("issuesGrid").innerHTML = `
-          <p class="font-bold text-gray-500 text-center">No issues found</p>
+          <p class="font-bold text-gray-500 text-center col-span-full">No issues found</p>
         `
         return;
     }
@@ -122,23 +124,23 @@ const showIssues = (issues) => {
        const borderColor = isOpen ? "border-t-green-500" : "border-t-purple-500";
        const statusIcon = isOpen 
        ? `<img src="assets/open-status.png" class="w-5 h-5" title="Open">`
-       : `<img src="assets/closed-status.png" class="w-5 h-5" title="Closed">`;
+       : `<img src="assets/Closed-Status .png" class="w-5 h-5" title="Closed">`;
 
        const labelsHTML = labels.map(l => `<span class="badge badge-sm ${getLabelColor(l.name || l)}" > ${getLabelIcon(l.name || l)} ${l.name || l}</span>`).join("");
        
        return`
-          <div class="bg-white rounded-xl border border-gray-100 border-t-4 ${borderColor} p-4 cursor-pointer hover:shadow-md transition-all"
-              onclick="fetchSingleIssue(${id})">
+          <div class="bg-[#FFFFFF] shadow-sm rounded-xl border border-gray-100 border-t-4 ${borderColor} p-4 cursor-pointer hover:shadow-md transition-all"
+            data-id="${id}" onclick="fetchSingleIssue(this.dataset.id)">
               <div class="flex items-center justify-between mb-2">${statusIcon}
-                <span class="badge badge-sm font-bold ${getPriorityColor(priority)}">${priority}</span>
+                <span class="${getPriorityColor(priority)}">${priority}</span>
               </div>
               <h3 class="font-semibold text-sm leading-snug line-clamp-2 mb-1">${issue.title}</h3>
-              <p>${issue.body || issue.description || "No description."}</p>
+              <p class="text-xs text-gray-400 mb-2 line-clamp-2">${issue.body || issue.description || "No description."}</p>
               <div class="flex flex-wrap gap-1 mb-3">${labelsHTML}</div>
               <div class="divider my-1"></div>
-              <div class="flex justify-between text-sm text-gray-400">
+              <div class="flex flex-col text-sm text-gray-400 gap-1">
                   <span><i class="fa-solid fa-user mr-1"></i>#${num} by ${author}</span>
-                  <span><i class="fa-solid fa-calender mr-1"></i>${date}</span>
+                  <span>${date}</span>
               </div>
           </div> `
     }).join("");
@@ -161,8 +163,7 @@ const showModalContent = (issue) => {
   $("modalBody").innerHTML = `
         <div class="flex flex-wrap items-center gap-2 mb-4">${statusBadge}
             <span class="text-xs text-gray-400">
-                <i class="fa-solid fa-user mr-1"></i>by <strong>${author}</strong>
-                <i class="fa-solid fa-calender  mr-1"></i>${date}
+                <i class="fa-solid fa-user mr-1"></i>by <strong>${author}</strong> ● ${date}
             </span>
         </div>
         <h2 class="text-lg font-bold mb-4">${issue.title}</h2>
@@ -170,21 +171,29 @@ const showModalContent = (issue) => {
         <div class="bg-base-200 rounded-xl p-4 text-sm text-gray-600 mb-5">${issue.body || issue.description || "No description."}</div>
         <div class="grid grid-cols-2 gap-4 mb-6">
             <div class="">
-                <p class="text-xs font-bold uppercase text-gray-400 mb-1"><i>Assignee</i></p>
+                <p class="text-xs font-bold uppercase text-gray-400 mb-1">Assignee</p>
                 <p class="font-semibold text-sm">${assignee}</p>
             </div>
             <div class="">
                 <p class="text-xs font-bold uppercase text-gray-400 mb-1"><i class="fa-solid fa-flag mr-1"></i>Priority</p>
-                <span class="badge ${getPriorityColor(priority)} font-bold">${priority}</span>
+                <span class=" ${getPriorityColor(priority)} font-bold">${priority}</span>
             </div>
         </div>
 
-        <form method="dialog">
-            <button class="btn btn-primary w-full"><i class="fa-solid fa-xmark mr-1"></i>Close</button>
+        <form method="dialog" class="flex justify-end">
+            <button class="btn btn-primary  ">Close</button>
         </form>`;
 }
 
   
+const showError = (msg) =>{
+
+  $("issuesGrid").innerHTML = `
+      <div class="col-span-full text-center py-16 text-red-400">
+        <p>${msg}</p>
+      </div>`;
+}
+
 const showLoading = () => {
   $("issueCount").textContent = "Loading...";
   $("issuesGrid").innerHTML = `
@@ -194,37 +203,38 @@ const showLoading = () => {
     </div>`
 }
 
+const showModalLoading = () => {
+  $("modalBody").innerHTML = `<div class="flex justify-center py-10"><span class="loading loading-spinner loading-lg text-primary"></span></div>`;
+};
+
 const formatDate = (d) => {
   if(!d)  return "";
-  try
-  {
-    return new Date(d).toLocaleDateString("en-US",{
-          month: "short", day: "numeric", year: "numeric"
-    });
+  try{
+    return new Date(d).toLocaleDateString("en-US");
   }catch{
     return d;
   }
 };
 
 const getPriorityColor = (p) =>
-  p === "HIGH" ? "badge-error text-white":
-  p === "MEDIUM" ? "badge-warning text-white":
-  p === "LOW" ? "badge-success text-white":
-  "badge-ghost";
+  p === "HIGH" ? "text-xs font-bold px-3 py-1 rounded-full bg-red-100 text-red-500":
+  p === "MEDIUM" ? "text-xs font-bold px-3 py-1 rounded-full bg-yellow-100 text-yellow-500":
+  p === "LOW" ? "text-xs font-bold px-3 py-1 rounded-full bg-gray-100 text-gray-500":
+ "text-xs font-bold px-3 py-1 rounded-full bg-gray-100 text-gray-400";
 
 const getLabelColor = (name) => {
   const n = (name || "").toLowerCase();
-  return n.includes("bug") ? "badge-error text-white":
-         n.includes("help") ? "badge-warning text-white":
-         n.includes("enhance") ? "badge-success text-white":
-         n.includes("feature") ? "badge-info text-white":
-         n.includes("question") ? "badge-secondary text-white":
-         "badge-ghost";
+  return n.includes("bug") ? "inline-flex items-center gap-1 text-xs font-semibold px-2.5 py-1 rounded-full bg-red-100 text-red-500":
+         n.includes("help") ?  "inline-flex items-center gap-1 text-xs font-semibold px-2.5 py-1 rounded-full bg-orange-100 text-orange-500":
+         n.includes("enhance") ?  "inline-flex items-center gap-1 text-xs font-semibold px-2.5 py-1 rounded-full bg-green-100 text-green-500":
+         n.includes("feature") ?  "inline-flex items-center gap-1 text-xs font-semibold px-2.5 py-1 rounded-full bg-blue-100 text-blue-500":
+         n.includes("question") ?  "inline-flex items-center gap-1 text-xs font-semibold px-2.5 py-1 rounded-full bg-purple-100 text-purple-500":
+          "inline-flex items-center gap-1 text-xs font-semibold px-2.5 py-1 rounded-full bg-gray-100 text-gray-500";
 };
 const getLabelIcon = (name) => {
   const n = (name || "").toLowerCase();
   return n.includes("bug") ? `<i class="fa-solid fa-bug"></i>`:
-         n.includes("help") ? `<i class="fa-solid fa-hand"></i>`:
+         n.includes("help") ? `<i class="fa-regular fa-life-ring"></i>`:
          n.includes("enhance") ? `<i class="fa-solid fa-star"></i>`:
          n.includes("feature") ? `<i class="fa-solid fa-wand-magic-sparkles"></i>`:
          n.includes("question") ? `<i class="fa-solid fa-question"></i>`:

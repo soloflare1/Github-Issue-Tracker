@@ -1,7 +1,5 @@
 const $ = (id) => document.getElementById(id);
 
-// login()
-
 const login = () => {
   const username = $("usernameInput").value.trim();
   const password = $("passwordInput").value.trim();
