@@ -131,7 +131,7 @@ const showIssues = (issues) => {
 
        const borderColor = isOpen ? "border-t-green-500" : "border-t-purple-500";
        const statusIcon = isOpen 
-       ? `<img src="assets/open-status.png" class="w-5 h-5" title="Open">`
+       ? `<img src="assets/Open-Status.png" class="w-5 h-5" title="Open">`
        : `<img src="assets/Closed-Status .png" class="w-5 h-5" title="Closed">`;
 
        const labelsHTML = labels.map(l => `<span class="badge badge-sm ${getLabelColor(l.name || l)}" > ${getLabelIcon(l.name || l)} ${l.name || l}</span>`).join("");
