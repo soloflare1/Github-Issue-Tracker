@@ -6,6 +6,7 @@ const login = () => {
   const errorBox = $("loginError");
 
     if(username === "admin"  && password === "admin123") {
+        localStorage.setItem("token" , "loggedin")
         window.location.href = 'index.html' ;
     }
     else{

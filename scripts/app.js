@@ -10,6 +10,14 @@ const $ = (id) => document.getElementById(id);
 
 
 window.addEventListener("load", () => {
+  if(!localStorage.getItem("token")){
+    window.location.href = "login.html";
+    return;
+  }
+  $("mainApp").classList.remove("hidden");
+})
+
+window.addEventListener("load", () => {
    fetchAllIssues();
 })
 
