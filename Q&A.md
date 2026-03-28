@@ -16,5 +16,5 @@
 * A shorter way to write a function
 
 ## Template literals
-* It use backticks & `${}` to insert variables
+* It use backticks ` `` ` & `${}` to insert variables
 * Can write multi-line string/HTML inside
