@@ -2,7 +2,7 @@
 
 A responsive GitHub Issue Tracker web application that allows users to view, search, and filter issues dynamically using real-time data from a REST API. The project focuses on clean UI design, efficient data handling, and interactive user experience.
 
-🔧 **Key Features:**
+**Key Features:**
 
 * Secure login system with predefined admin credentials
 * Dynamic data fetching from REST API
@@ -14,7 +14,7 @@ A responsive GitHub Issue Tracker web application that allows users to view, sea
 * Loading spinner for better UX
 * Fully responsive design for mobile & desktop
 
-🛠️ **Technologies Used:**
+**Technologies Used:**
 HTML, Tailwind CSS, DaisyUI, JavaScript (ES6), REST API
 
 
