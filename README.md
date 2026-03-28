@@ -1,4 +1,4 @@
- **GitHub Issue Tracker **
+## GitHub Issue Tracker
 
 A responsive GitHub Issue Tracker web application that allows users to view, search, and filter issues dynamically using real-time data from a REST API. The project focuses on clean UI design, efficient data handling, and interactive user experience.
 
